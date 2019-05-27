@@ -1,0 +1,44 @@
+{% extends 'Index/Base.html' %}
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/icon.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/style.css' %}">
+        <title>Booking</title>
+    </head>
+    <body>
+    <div class="container" id="container_margin">
+        <table class="table table-striped table-bordered table-hover table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th>CLASSROOM</th>
+                <th>DATE</th>
+                <th>TIME</th>
+                <th>CATEGORY</th>
+                <th>STATUS</th>
+                <th>DETAIL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for booking in booking %}
+                <tr>
+                    <td>{{ booking.booking_classroom_identity.classroom_name }}</td>
+                    <td>{{ booking.booking_date }}</td>
+                    <td>{{ booking.booking_time }}</td>
+                    <td>{{ booking.booking_category }}</td>
+                    <td>{{ booking.booking_status }}</td>
+                    <td>
+                        <a href="/Booking/Admin/View/{{ booking.booking_identity }}" data-toggle="tooltip"
+                           title="Detail">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+{% endblock %}

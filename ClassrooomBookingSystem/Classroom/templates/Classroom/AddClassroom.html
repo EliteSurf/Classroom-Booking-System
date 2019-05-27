@@ -1,0 +1,51 @@
+{% extends 'Index/Base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'Index/bootstrap.min.css' %}">
+    <title>Add</title>
+</head>
+<body>
+<form method="POST" class="post-form" action="/Classroom/Add/">
+    {% csrf_token %}
+    <div class="container">
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <h3>Enter Classroom Details</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Classroom Name:</label>
+            <div class="col-sm-4">
+                {{ form.classroom_name }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Classroom Capacity:</label>
+            <div class="col-sm-4">
+                {{ form.classroom_capacity }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Classroom Status:</label>
+            <div class="col-sm-4">
+                {{ form.classroom_status }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="button btn bg-danger" href="/Classroom/View">Back</a>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+{% endblock %}

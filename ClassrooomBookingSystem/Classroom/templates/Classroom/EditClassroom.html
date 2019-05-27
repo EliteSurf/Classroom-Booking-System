@@ -1,0 +1,66 @@
+{% extends 'Index/Base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/style.css' %}">
+        <title>Edit</title>
+    </head>
+    <body>
+    <div class="container" id="container_margin">
+        <form method="POST" class="post-form" action="/Classroom/Update/{{ classroom.classroom_identity }}">
+            {% csrf_token %}
+            <div class="container">
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <h2>Update Classroom </h2>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Classroom ID:</label>
+                    <div class="col-sm-4">
+                        <input type="number" name="classroom_identity" value="{{ classroom.classroom_identity }}"
+                               required
+                               readonly/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Classroom Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="classroom_name" required maxlength="50"
+                               value="{{ classroom.classroom_name }}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Classroom Capacity:</label>
+                    <div class="col-sm-4">
+                        <input type="number" name="classroom_capacity" value="{{ classroom.classroom_capacity }}"
+                               required/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Classroom Status:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="classroom_status" maxlength="20"
+                               value="{{ classroom.classroom_status }}"
+                               required/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a class="button btn bg-danger" href="/Classroom/View">Back</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </body>
+    </html>
+{% endblock %}

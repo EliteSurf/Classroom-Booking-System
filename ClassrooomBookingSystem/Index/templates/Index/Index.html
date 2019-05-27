@@ -1,0 +1,15 @@
+{% extends 'Index/Base.html' %}
+{% load static %}
+<!-- Local CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'Index/style.css' %}">
+{% block content %}
+
+    <div class="container" id="container_margin">
+        {% if user.is_authenticated %}
+            <h1>You have Login</h1>
+        {% else %}
+            <h1>Index Page</h1>
+        {% endif %}
+    </div>
+
+{% endblock %}

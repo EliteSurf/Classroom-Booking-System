@@ -1,0 +1,92 @@
+{% extends 'Index/Base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/style.css' %}">
+        <title>Add Booking</title>
+    </head>
+    <body>
+
+    <form method="POST" class="post-form" action="/Booking/Add/">
+        {% csrf_token %}
+        <div class="container" id="container_margin">
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <h3>Enter Booking</h3>
+                </div>
+            </div>
+
+            <!--  [Select] Classroom -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputClassroomSelect">Classroom</label>
+                </div>
+                <select class="custom-select" name="booking_classroom_identity" id="inputClassroomSelect">
+                    {% for classroom in classroom %}
+                        <option value="{{ classroom.classroom_identity }}">{{ classroom.classroom_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!--  [Date Field] Booking Date -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Date</span>
+                </div>
+                <input aria-label="Date" class="form-control" name="booking_date" placeholder="Date" type="date">
+            </div>
+
+            <!--  [Select] Booking Time -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputTimeSelect">Time</label>
+                </div>
+                <select class="custom-select" name="booking_time" id="inputTimeSelect">
+                    <option value="08:00AM - 10:00AM">08:00AM - 10:00AM</option>
+                    <option value="10:00AM - 12:00PM">10:00AM - 12:00PM</option>
+                    <option value="12:00PM - 02:00PM">12:00PM - 02:00PM</option>
+                    <option value="02:00PM - 04:00PM">02:00PM - 04:00PM</option>
+                    <option value="04:00PM - 06:00PM">04:00PM - 06:00PM</option>
+                    <option value="06:00PM - 08:00PM">06:00PM - 08:00PM</option>
+                    <option value="08:00PM - 10:00PM">08:00PM - 10:00PM</option>
+                    <option value="10:00PM - 12:00AM">10:00PM - 12:00AM</option>
+                </select>
+            </div>
+
+            <!--  [Select] Booking Category -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputCategory">Category</label>
+                </div>
+                <select class="custom-select" name="booking_category" id="inputCategory">
+                    <option value="Club Activity">Club Activity</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- [TextArea] Booking Reason -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Reason</span>
+                </div>
+                <textarea aria-label="Reason" class="form-control" name="booking_reason" type="text"></textarea>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="button btn bg-danger" href="/Booking/View">Back</a>
+                </div>
+            </div>
+        </div>
+    </form>
+    </body>
+    </html>
+{% endblock %}
