@@ -1,0 +1,57 @@
+{% extends 'Index/Base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/icon.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'Index/style.css' %}">
+        <title>Classroom</title>
+    </head>
+    <body>
+    <div class="container" id="container_margin">
+        <table class="table table-striped table-bordered table-hover table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>CAPACITY</th>
+                <th>STATUS</th>
+                <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for classroom in classroom %}
+                <tr>
+                    <td>{{ classroom.classroom_identity }}</td>
+                    <td>{{ classroom.classroom_name }}</td>
+                    <td>{{ classroom.classroom_capacity }}</td>
+                    <td>{{ classroom.classroom_status }}</td>
+                    <td>
+                        <a href="/Classroom/Edit/{{ classroom.classroom_identity }}" data-toggle="tooltip"
+                           title="Edit Classroom">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="/Classroom/Delete/{{ classroom.classroom_identity }}" data-toggle="tooltip"
+                           title="Delete Classroom">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        <a href="/Classroom/Booking_List/{{ classroom.classroom_identity }}" data-toggle="tooltip"
+                           title="Booking List">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div style="text-align: center;">
+            <a href="/Classroom/Add/" class="btn btn-primary">Add New Classroom</a>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}
