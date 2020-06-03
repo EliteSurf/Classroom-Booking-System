@@ -1,0 +1,44 @@
+{% extends "Index/Base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container" id="container_margin">
+        <form method="post" action="/User/Profile/{{ user.id }}">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">ACCOUNT ID:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="user_id" value="{{ user.id }}" required readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">USER NAME:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="user_name" value="{{ user.userprofile.user_name }}" readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">USER ID:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="user_identity" value="{{ user.userprofile.user_identity }}" readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">USER EMAIL:</label>
+                <div class="col-sm-4">
+                    <input type="email" name="user_email" value="{{ user.email }}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">USER PHONE:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="user_phone" value="{{ user.userprofile.user_phone }}"/>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-center">
+                <button class="btn btn-success" name="UpdateProfile" type="submit">UPDATE PROFILE</button>
+                <a class="btn btn-secondary" href="{% url 'Profile' %}">BACK</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
